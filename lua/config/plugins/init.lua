@@ -24,6 +24,8 @@ vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup({
   spec = {
+    { import = 'config.plugins.colorschemes' },
+
     { import = 'config.plugins.nvim-cmp' },
     { import = 'config.plugins.vim-easy-align' },
     { import = 'config.plugins.neogit' },
