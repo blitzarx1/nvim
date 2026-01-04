@@ -28,5 +28,6 @@ require('lazy').setup({
     { import = 'config.plugins.vim-easy-align' },
     { import = 'config.plugins.neogit' },
     { import = 'config.plugins.gitsigns' },
+    { import = 'config.plugins.copilot' },
   },
 })
