@@ -1,5 +1,7 @@
 local o = vim.opt
 
+o.syntax = "enable"
+
 o.number = true
 
 o.tabstop = 4
