@@ -22,15 +22,18 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-require('lazy').setup({
-  spec = {
+require('lazy').setup({ spec = { 
     { import = 'config.plugins.colorschemes' },
 
     { import = 'config.plugins.nvim-cmp' },
     { import = 'config.plugins.vim-easy-align' },
     { import = 'config.plugins.neogit' },
     { import = 'config.plugins.gitsigns' },
-    { import = 'config.plugins.copilot' },
+    -- { import = 'config.plugins.copilot' },
+    { import = 'config.plugins.vim-dadbod' },
+    { import = 'config.plugins.nvim-treesitter' },
+    { import = 'config.plugins.nvim-treesitter-context' },
+
     { import = 'config.plugins.todoer' },
   },
 })

@@ -7,7 +7,8 @@ vim.api.nvim_create_autocmd({ 'FileType', 'WinEnter' }, {
       return
     end
 
-    vim.bo[args.buf].makeprg = 'go build ./...'
+    -- Set compilation programm
+    -- vim.bo[args.buf].makeprg = 'go build ./...'
 
     vim.wo.colorcolumn = ''
   end,

@@ -29,7 +29,7 @@ return {
           ['<C-k>'] = cmp.mapping.scroll_docs(-4),
           ['<C-j>'] = cmp.mapping.scroll_docs(4),
 
-          ["<CR>"] = cmp.mapping(function(fallback)
+          ["<TAB>"] = cmp.mapping(function(fallback)
             if cmp.visible() then
               -- confirm the currently selected item
               -- (the first item will be selected by preselect)

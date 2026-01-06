@@ -1,3 +1,2 @@
-require 'commands'
 require 'config'
-
+require 'commands'
