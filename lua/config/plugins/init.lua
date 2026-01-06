@@ -31,5 +31,6 @@ require('lazy').setup({
     { import = 'config.plugins.neogit' },
     { import = 'config.plugins.gitsigns' },
     { import = 'config.plugins.copilot' },
+    { import = 'config.plugins.todoer' },
   },
 })
