@@ -2,6 +2,7 @@
 
 require'config.opt'
 require'config.remaps'
+require'config.grep'
 
 require'config.explorer'
 require'config.qflist'
