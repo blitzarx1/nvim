@@ -29,10 +29,11 @@ require('lazy').setup({ spec = {
     { import = 'config.plugins.vim-easy-align' },
     { import = 'config.plugins.neogit' },
     { import = 'config.plugins.gitsigns' },
-    -- { import = 'config.plugins.copilot' },
-    { import = 'config.plugins.vim-dadbod' },
+    -- { import = 'config.plugins.copilot' },    // tired of copilot
+    -- { import = 'config.plugins.vim-dadbod' }, // dangeros
     { import = 'config.plugins.nvim-treesitter' },
     { import = 'config.plugins.nvim-treesitter-context' },
+    { import = 'config.plugins.telescope-nvim' },
 
     { import = 'config.plugins.todoer' },
   },
