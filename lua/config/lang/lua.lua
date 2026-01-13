@@ -15,3 +15,19 @@ vim.api.nvim_create_autocmd({ 'FileType', 'WinEnter' }, {
     vim.wo.colorcolumn = '80'
   end,
 })
+
+-- LSP
+local capabilities = require('cmp_nvim_lsp').default_capabilities();
+
+vim.lsp.config['luals'] = {
+	capabilities = capabilities,
+	cmd = { 'lua-language-server' },
+	filetypes = { 'lua' },
+	settings = {
+		Lua = {
+			runtime = {
+				version = 'LuaJIT',
+			}
+		}
+	}
+}

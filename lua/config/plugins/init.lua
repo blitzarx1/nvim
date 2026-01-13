@@ -35,6 +35,8 @@ require('lazy').setup({ spec = {
     { import = 'config.plugins.nvim-treesitter-context' },
     { import = 'config.plugins.telescope-nvim' },
 
+    { import = 'config.plugins.mason'},
+
     { import = 'config.plugins.todoer' },
   },
 })

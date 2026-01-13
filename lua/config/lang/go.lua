@@ -10,3 +10,13 @@ vim.api.nvim_create_autocmd({ 'FileType', 'WinEnter' }, {
     vim.wo.colorcolumn = ''
   end,
 })
+
+-- lsp setup
+local capabilities = require('cmp_nvim_lsp').default_capabilities();
+
+vim.lsp.config["gopls"] = {
+	capabilities = capabilities,
+	cmd = {"gopls"},
+	filetypes = {"go"},
+}
+
