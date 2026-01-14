@@ -23,5 +23,8 @@ vim.api.nvim_create_autocmd("FileType", {
 -- Netrw default view: long (shows sizes and dates)
 vim.g.netrw_liststyle = 1
 
+-- Disable the banner at the top
+vim.g.netrw_banner = 0
+
 -- Human-readable sizes (K, M, G)
 vim.g.netrw_sizestyle = "h"
