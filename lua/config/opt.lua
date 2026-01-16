@@ -11,3 +11,4 @@ o.expandtab = true
 
 o.list = true
 o.listchars = "tab:▸ ,space:·,trail:·,extends:›,precedes:‹,eol:$"
+
