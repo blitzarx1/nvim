@@ -23,20 +23,21 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup({ spec = { 
-    -- { import = 'config.plugins.vim-dadbod' }, -- dangeros
-
     { import = 'config.plugins.colorschemes' },
 
     { import = 'config.plugins.nvim-cmp' },
     { import = 'config.plugins.vim-easy-align' },
     { import = 'config.plugins.neogit' },
     { import = 'config.plugins.gitsigns' },
-    { import = 'config.plugins.copilot' },
     { import = 'config.plugins.nvim-treesitter' },
     { import = 'config.plugins.nvim-treesitter-context' },
     { import = 'config.plugins.telescope-nvim' },
 
-    { import = 'config.plugins.mason'},
+    -- -- ai section 
+    -- { import = 'config.plugins.copilot' },
+    -- { import = 'config.plugins.sidekick' },
+
+    -- { import = 'config.plugins.mason'},
 
     { import = 'config.plugins.todoer' },
   },
