@@ -22,11 +22,8 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
--- or uncomment the config below
-vim.cmd('colorscheme default')
-
 require('lazy').setup({ spec = { 
---     { import = 'config.plugins.colorscheme' },
+    { import = 'config.plugins.colorscheme' },
 
     { import = 'config.plugins.nvim-cmp' },
     { import = 'config.plugins.vim-easy-align' },

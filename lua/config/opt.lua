@@ -1,6 +1,6 @@
 local o = vim.opt
 
-o.syntax = "enable"
+o.syntax = "off"
 
 o.number = true
 

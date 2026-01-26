@@ -7,7 +7,7 @@ vim.api.nvim_create_autocmd({ 'FileType', 'WinEnter' }, {
       return
     end
 
-    vim.wo.colorcolumn = ''
+    vim.wo.colorcolumn = '120'
   end,
 })
 
