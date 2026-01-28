@@ -4,6 +4,6 @@ require'config.lang.go'
 require'config.lang.yaml'
 
 -- -- LSP enable
--- vim.lsp.enable("luals")
--- vim.lsp.enable("gopls")
--- vim.lsp.enable("rust-analyzer")
+vim.lsp.enable("luals")
+vim.lsp.enable("gopls")
+vim.lsp.enable("rust-analyzer")

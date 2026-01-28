@@ -3,6 +3,7 @@ local o = vim.opt
 o.syntax = "off"
 
 o.number = true
+o.relativenumber = true
 
 o.tabstop = 4
 o.shiftwidth = 4

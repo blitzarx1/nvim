@@ -10,4 +10,4 @@ require'config.explorer'
 require'config.qflist'
 require'config.lang'
 
--- require'config.lsp'
+require'config.lsp'

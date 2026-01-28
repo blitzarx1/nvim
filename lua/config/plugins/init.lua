@@ -32,12 +32,8 @@ require('lazy').setup({ spec = {
     { import = 'config.plugins.nvim-treesitter' },
     { import = 'config.plugins.nvim-treesitter-context' },
     { import = 'config.plugins.telescope-nvim' },
-
-    -- -- ai section 
-    -- { import = 'config.plugins.copilot' },
-    -- { import = 'config.plugins.sidekick' },
-
-    -- { import = 'config.plugins.mason'},
+    { import = 'config.plugins.copilot' },
+    { import = 'config.plugins.mason'},
 
     { import = 'config.plugins.todoer' },
   },

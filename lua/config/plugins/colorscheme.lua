@@ -8,9 +8,8 @@ return {
       silentium.setup({ accent = silentium.accents.peach })
 
       vim.cmd("colorscheme silentium")
-      -- Accent blue selection with dark fg for contrast, like accent-backed UI groups
-      vim.api.nvim_set_hl(0, "Visual", { bg = silentium.accents.blue, fg = silentium.colors.dark })
-      vim.api.nvim_set_hl(0, "VisualNOS", { bg = silentium.accents.blue, fg = silentium.colors.dark })
+      vim.api.nvim_set_hl(0, "Visual", { bg = "#B3D7FF", fg = silentium.colors.dark })
+      vim.api.nvim_set_hl(0, "VisualNOS", { bg = "#B3D7FF", fg = silentium.colors.dark })
     end
   }
   -- {
