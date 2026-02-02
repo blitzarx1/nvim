@@ -26,3 +26,5 @@ vim.keymap.set("x", "/",function()
   vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("/\\%V", true, false, true), "n", false)
 end, opts)
 
+-- nvim-tree
+map('n', '<leader>e', '<cmd>NvimTreeToggle<CR>', opts)
