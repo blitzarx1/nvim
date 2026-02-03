@@ -14,3 +14,11 @@ vim.api.nvim_create_user_command(
   {}
 )
 
+vim.api.nvim_create_user_command(
+  'GitLink',
+  function(cmdopts)
+    require('commands/gitlink').copy_link({ line1 = cmdopts.line1, line2 = cmdopts.line2 })
+  end,
+  { range = true }
+)
+

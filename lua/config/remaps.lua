@@ -26,5 +26,22 @@ vim.keymap.set("x", "/",function()
   vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("/\\%V", true, false, true), "n", false)
 end, opts)
 
--- nvim-tree
+-- netrw --
+-- map('n', '-', ':Ex<CR>', opts) -- open explorer with '-'
+----
+
+-- nvim-tree --
 map('n', '<leader>e', '<cmd>NvimTreeToggle<CR>', opts)
+map('n', '-', '<cmd>NvimTreeOpen<CR>', opts)
+
+-- GitLink --
+-- Normal mode: copy link for cursor line
+vim.keymap.set("n", "<C-y>", function()
+  require("commands/gitlink").copy_link()
+end, { desc = "Copy git link to current line" })
+
+-- Visual mode: copy link for selection
+vim.keymap.set("v", "<C-y>", function()
+  require("commands/gitlink").copy_link()
+end, { desc = "Copy git link to selected lines" })
+----

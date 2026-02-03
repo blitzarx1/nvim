@@ -1,7 +1,6 @@
 local map   = vim.keymap.set
 local opts  = { noremap = true, silent = true }
 
-map('n', '-', ':Ex<CR>', opts) -- open explorer with '-'
 vim.api.nvim_create_autocmd("FileType", {
   pattern = "netrw",
   callback = function()
