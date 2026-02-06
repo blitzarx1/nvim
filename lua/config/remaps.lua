@@ -27,7 +27,7 @@ vim.keymap.set("x", "/",function()
 end, opts)
 
 -- netrw --
-map('n', '-', ':Ex<CR>', opts) -- open explorer with '-'
+-- map('n', '-', ':Ex<CR>', opts) -- open explorer with '-'
 
 -- GitLink --
 -- Normal mode: copy link for cursor line
