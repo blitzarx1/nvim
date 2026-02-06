@@ -27,12 +27,7 @@ vim.keymap.set("x", "/",function()
 end, opts)
 
 -- netrw --
--- map('n', '-', ':Ex<CR>', opts) -- open explorer with '-'
-----
-
--- nvim-tree --
-map('n', '<leader>e', '<cmd>NvimTreeToggle<CR>', opts)
-map('n', '-', '<cmd>NvimTreeOpen<CR>', opts)
+map('n', '-', ':Ex<CR>', opts) -- open explorer with '-'
 
 -- GitLink --
 -- Normal mode: copy link for cursor line

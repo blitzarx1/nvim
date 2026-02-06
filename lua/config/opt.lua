@@ -13,3 +13,6 @@ o.expandtab = true
 o.list = true
 o.listchars = "tab:▸ ,space:·,trail:·,extends:›,precedes:‹,eol:$"
 
+-- Search behavior: case-insensitive unless uppercase is used.
+o.ignorecase = true
+o.smartcase = true
