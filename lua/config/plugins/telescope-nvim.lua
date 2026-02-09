@@ -6,6 +6,16 @@ return{{
         { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
     },
     config = function()
+      require('telescope').setup({
+        pickers = {
+          find_files = {
+            hidden = true,
+            no_ignore = true,
+            no_ignore_parent = true,
+          },
+        },
+      })
+
       local builtin = require('telescope.builtin')
       vim.keymap.set('n', '<leader>f', builtin.find_files, { desc = 'Telescope find files' })
       vim.keymap.set('n', '<leader>/', builtin.live_grep, { desc = 'Telescope live grep' })
