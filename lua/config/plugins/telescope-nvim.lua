@@ -6,12 +6,49 @@ return{{
         { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
     },
     config = function()
+      local make_entry = require('telescope.make_entry')
+      local telescope_utils = require('telescope.utils')
+
+      local compact_vimgrep_entry = function(opts)
+        local base_entry_maker = make_entry.gen_from_vimgrep(opts)
+        return function(line)
+          local entry = base_entry_maker(line) if not entry then
+            return nil
+          end
+
+          entry.display = function(e)
+            local path = telescope_utils.transform_path(opts, e.filename)
+            return string.format('%s:%s', path, e.lnum or '?')
+          end
+
+          return entry
+        end
+      end
+
       require('telescope').setup({
         pickers = {
           find_files = {
             hidden = true,
             no_ignore = true,
             no_ignore_parent = true,
+          },
+          live_grep = {
+            entry_maker = compact_vimgrep_entry({}),
+          },
+          grep_string = {
+            entry_maker = compact_vimgrep_entry({}),
+          },
+          lsp_references = {
+            show_line = false,
+          },
+          lsp_definitions = {
+            show_line = false,
+          },
+          lsp_implementations = {
+            show_line = false,
+          },
+          lsp_type_definitions = {
+            show_line = false,
           },
         },
       })
