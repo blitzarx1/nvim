@@ -9,6 +9,10 @@ return{{
       local make_entry = require('telescope.make_entry')
       local telescope_utils = require('telescope.utils')
 
+      local apply_telescope_highlights = function()
+        vim.api.nvim_set_hl(0, 'TelescopeMatching', { link = 'CurSearch' })
+      end
+
       local compact_vimgrep_entry = function(opts)
         local base_entry_maker = make_entry.gen_from_vimgrep(opts)
         return function(line)
@@ -51,6 +55,12 @@ return{{
             show_line = false,
           },
         },
+      })
+
+      apply_telescope_highlights()
+      vim.api.nvim_create_autocmd('ColorScheme', {
+        group = vim.api.nvim_create_augroup('TelescopeHighlightOverrides', { clear = true }),
+        callback = apply_telescope_highlights,
       })
 
       local builtin = require('telescope.builtin')
