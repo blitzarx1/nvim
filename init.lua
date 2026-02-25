@@ -237,7 +237,57 @@ require"treesitter-context".setup({
     mode = "cursor",          -- Line used to calculate context. Choices: "cursor", "topline"
     zindex = 20,              -- The Z-index of the context window
     on_attach = nil,          -- (fun(buf: integer): boolean) return false to disable attaching
-    -- Separator between context and content. Should be a single character string, like '-'.
+    -- Separator between context and content. Should be a single character string, like "-".
     -- When separator is set, the context will only show up when there are at least 2 lines above cursorline.
-    separator = '-',
+    separator = "-",
+})
+
+vim.pack.add({
+  {src = "https://github.com/hrsh7th/nvim-cmp"},
+  {src = "https://github.com/hrsh7th/cmp-buffer"},
+  {src = "https://github.com/hrsh7th/cmp-path"},
+})
+local cmp = require"cmp"
+cmp.setup({
+  sources = {
+    { name = "buffer" },
+    { name = "path"},
+  },
+  preselect = cmp.PreselectMode.Item,
+  completion = {
+    completeopt = "menu,menuone,noinsert",
+  },
+  mapping = cmp.mapping.preset.insert({
+    ["<C-p>"] = cmp.mapping.select_prev_item({
+      behavior = cmp.SelectBehavior.Insert,
+    }),
+    ["<C-n>"] = cmp.mapping.select_next_item({
+      behavior = cmp.SelectBehavior.Insert,
+    }),
+    ["<C-k>"] = cmp.mapping.scroll_docs(-4),
+    ["<C-j>"] = cmp.mapping.scroll_docs(4),
+
+    ["<TAB>"] = cmp.mapping(function(fallback)
+      if cmp.visible() then
+        -- confirm the currently selected item
+        -- (the first item will be selected by preselect)
+        cmp.confirm({ select = true })
+        return
+      end
+
+      fallback()
+    end, { "i" }),
+  }),
+  view = {
+    entries = "native",
+  },
+  formatting = {
+    format = function(entry, vim_item)
+      vim_item.menu = ({
+        buffer   = "[Buffer]",
+        path     = "[Path]",
+      })[entry.source.name]
+      return vim_item
+    end
+  },
 })
