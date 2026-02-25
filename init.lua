@@ -69,6 +69,8 @@ vim.pack.add({
 require"mini.pick".setup()
 vim.keymap.set("n", "<leader>b", ":Pick buffers<CR>", { desc = "Opened buffers" })
 vim.keymap.set("n", "<leader>f", ":Pick files<CR>", { desc = "Find file" })
+vim.keymap.set("n", "<leader>'", ":Pick resume<CR>", { desc = "Open last picker" })
+vim.keymap.set("n", "<leader>g", ":Pick grep_live<CR>", { desc = "Open live grep" })
 
 vim.pack.add({
     {src = "https://github.com/junegunn/vim-easy-align"}
