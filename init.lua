@@ -60,18 +60,20 @@ vim.keymap.set("n", "<leader>o", ":BufOnly<CR>", { desc = "Close other buffers" 
 -- ######## PLUGINS  ########
 
 vim.pack.add({
+    {src = "https://github.com/github/copilot.vim"}
+})
+
+vim.pack.add({
     {src = "https://github.com/nvim-mini/mini.pick"}
 })
 require"mini.pick".setup()
+vim.keymap.set("n", "<leader>b", ":Pick buffers<CR>", { desc = "Opened buffers" })
+vim.keymap.set("n", "<leader>f", ":Pick files<CR>", { desc = "Find file" })
 
 vim.pack.add({
     {src = "https://github.com/junegunn/vim-easy-align"}
 })
 vim.keymap.set("x", "ga", "<Plug>(EasyAlign)", { desc = "Align selection" })
-
-vim.pack.add({
-    {src = "https://github.com/github/copilot.vim"}
-})
 
 vim.pack.add({
     {src = "https://github.com/lewis6991/gitsigns.nvim"}
