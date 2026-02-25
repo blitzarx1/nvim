@@ -130,6 +130,9 @@ vim.keymap.set("n", "<leader>o", ":BufOnly<CR>", { desc = "Close other buffers" 
 
 vim.pack.add({ {src = "https://github.com/github/copilot.vim"} })
 
+vim.pack.add({ {src = "https://github.com/junegunn/vim-easy-align"} })
+vim.keymap.set("x", "ga", "<Plug>(EasyAlign)", { desc = "Align selection" })
+
 vim.pack.add({{src = "https://github.com/nvim-mini/mini.icons"}})
 require"mini.icons".setup()
 
@@ -150,9 +153,6 @@ vim.keymap.set("n", "<leader>f", ":Pick files<CR>", { desc = "Find file" })
 vim.keymap.set("n", "<leader>'", ":Pick resume<CR>", { desc = "Open last picker" })
 vim.keymap.set("n", "<leader>/", ":Pick grep_live<CR>", { desc = "Open live grep" })
 
-vim.pack.add({ {src = "https://github.com/junegunn/vim-easy-align"} })
-vim.keymap.set("x", "ga", "<Plug>(EasyAlign)", { desc = "Align selection" })
-
 vim.pack.add({ {src = "https://github.com/lewis6991/gitsigns.nvim"} })
 require"gitsigns".setup({
   current_line_blame = true, 
@@ -172,6 +172,10 @@ require"oil".setup({
   columns = { "icon" },
   keymaps = {
     ["-"] = "actions.parent",
+    ["<C-h>"] = false,
+    ["<C-j>"] = false,
+    ["<C-k>"] = false,
+    ["<C-l>"] = false,
   },
   view_options = {
     show_hidden = true,
