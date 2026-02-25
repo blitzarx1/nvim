@@ -31,65 +31,64 @@ vim.opt.grepformat = "%f:%l:%c:%m"
 
 -- ######## LANGS    ########
 
-local json_group = vim.api.nvim_create_augroup('JsonLocalOpts', { clear = true })
-vim.api.nvim_create_autocmd({ 'FileType', 'WinEnter' }, {
+local json_group = vim.api.nvim_create_augroup("JsonLocalOpts", { clear = true })
+vim.api.nvim_create_autocmd({ "FileType", "WinEnter" }, {
   group = json_group,
   callback = function(args)
-    if vim.bo[args.buf].filetype ~= 'json' then
+    if vim.bo[args.buf].filetype ~= "json" then
       return
     end
     local bo = vim.bo[args.buf]
     bo.expandtab = true
     bo.shiftwidth = 2
     bo.softtabstop = 2
-    vim.wo.colorcolumn = '0'
   end,
 })
 
-local go_group = vim.api.nvim_create_augroup('GoLocalOpts', { clear = true })
-vim.api.nvim_create_autocmd({ 'FileType', 'WinEnter' }, {
+local go_group = vim.api.nvim_create_augroup("GoLocalOpts", { clear = true })
+vim.api.nvim_create_autocmd({ "FileType", "WinEnter" }, {
   group = go_group,
   callback = function(args)
-    if vim.bo[args.buf].filetype ~= 'go' then
+    if vim.bo[args.buf].filetype ~= "go" then
       return
     end
-    vim.wo.colorcolumn = '120'
+    vim.wo.colorcolumn = "120"
   end,
 })
 
-local c_group = vim.api.nvim_create_augroup('CLocalOpts', { clear = true })
-vim.api.nvim_create_autocmd({ 'FileType', 'WinEnter' }, {
+local c_group = vim.api.nvim_create_augroup("CLocalOpts", { clear = true })
+vim.api.nvim_create_autocmd({ "FileType", "WinEnter" }, {
   group = c_group,
   callback = function(args)
     local ft = vim.bo[args.buf].filetype
-    if ft ~= 'c' and ft ~= 'h' then
+    if ft ~= "c" and ft ~= "h" then
       return
     end
-    vim.wo.colorcolumn = '80'
+    vim.wo.colorcolumn = "80"
   end,
 })
 
-local lua_group = vim.api.nvim_create_augroup('LuaLocalOpts', { clear = true })
-vim.api.nvim_create_autocmd({ 'FileType', 'WinEnter' }, {
+local lua_group = vim.api.nvim_create_augroup("LuaLocalOpts", { clear = true })
+vim.api.nvim_create_autocmd({ "FileType", "WinEnter" }, {
   group = lua_group,
   callback = function(args)
-    if vim.bo[args.buf].filetype ~= 'lua' then
+    if vim.bo[args.buf].filetype ~= "lua" then
       return
     end
     local bo = vim.bo[args.buf]
     bo.expandtab = true
     bo.shiftwidth = 2
     bo.softtabstop = 2
-    vim.wo.colorcolumn = '80'
+    vim.wo.colorcolumn = "80"
   end,
 })
 
-local yaml_group = vim.api.nvim_create_augroup('YamlLocalOpts', { clear = true })
-vim.api.nvim_create_autocmd({ 'FileType', 'WinEnter' }, {
+local yaml_group = vim.api.nvim_create_augroup("YamlLocalOpts", { clear = true })
+vim.api.nvim_create_autocmd({ "FileType", "WinEnter" }, {
   group = yaml_group,
   callback = function(args)
     local ft = vim.bo[args.buf].filetype
-    if ft ~= 'yaml' and ft ~= 'yml' then
+    if ft ~= "yaml" and ft ~= "yml" then
       return
     end
     local bo = vim.bo[args.buf]
@@ -133,10 +132,19 @@ vim.pack.add({ {src = "https://github.com/github/copilot.vim"} })
 
 vim.pack.add({ {src = "https://github.com/nvim-mini/mini.pick"} })
 require"mini.pick".setup()
+local apply_minipick_highlights = function()
+  vim.api.nvim_set_hl(0, "MiniPickMatchRanges", { link = "CurSearch" })
+  vim.api.nvim_set_hl(0, "MiniPickMatchCurrent", { bg = "#B3D7FF", fg = require"silentium".colors.dark })
+end
+apply_minipick_highlights()
+vim.api.nvim_create_autocmd("ColorScheme", {
+  group = vim.api.nvim_create_augroup("MiniPickHighlightOverrides", { clear = true }),
+  callback = apply_minipick_highlights,
+})
 vim.keymap.set("n", "<leader>b", ":Pick buffers<CR>", { desc = "Opened buffers" })
 vim.keymap.set("n", "<leader>f", ":Pick files<CR>", { desc = "Find file" })
 vim.keymap.set("n", "<leader>'", ":Pick resume<CR>", { desc = "Open last picker" })
-vim.keymap.set("n", "<leader>g", ":Pick grep_live<CR>", { desc = "Open live grep" })
+vim.keymap.set("n", "<leader>/", ":Pick grep_live<CR>", { desc = "Open live grep" })
 
 vim.pack.add({ {src = "https://github.com/junegunn/vim-easy-align"} })
 vim.keymap.set("x", "ga", "<Plug>(EasyAlign)", { desc = "Align selection" })
