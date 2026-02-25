@@ -130,11 +130,15 @@ vim.keymap.set("n", "<leader>o", ":BufOnly<CR>", { desc = "Close other buffers" 
 
 vim.pack.add({ {src = "https://github.com/github/copilot.vim"} })
 
+vim.pack.add({{src = "https://github.com/nvim-mini/mini.icons"}})
+require"mini.icons".setup()
+
 vim.pack.add({ {src = "https://github.com/nvim-mini/mini.pick"} })
 require"mini.pick".setup()
+local silentium_colors = require"silentium".colors
 local apply_minipick_highlights = function()
   vim.api.nvim_set_hl(0, "MiniPickMatchRanges", { link = "CurSearch" })
-  vim.api.nvim_set_hl(0, "MiniPickMatchCurrent", { bg = "#B3D7FF", fg = require"silentium".colors.dark })
+  vim.api.nvim_set_hl(0, "MiniPickMatchCurrent", { bg = "#B3D7FF", fg = silentium_colors.dark })
 end
 apply_minipick_highlights()
 vim.api.nvim_create_autocmd("ColorScheme", {
@@ -150,11 +154,11 @@ vim.pack.add({ {src = "https://github.com/junegunn/vim-easy-align"} })
 vim.keymap.set("x", "ga", "<Plug>(EasyAlign)", { desc = "Align selection" })
 
 vim.pack.add({ {src = "https://github.com/lewis6991/gitsigns.nvim"} })
-require("gitsigns").setup({
+require"gitsigns".setup({
   current_line_blame = true, 
 })
-vim.keymap.set("n", "]g", function() require("gitsigns").nav_hunk("next") end, { desc = "Next hunk" })
-vim.keymap.set("n", "[g", function() require("gitsigns").nav_hunk("prev") end, { desc = "Prev hunk" })
+vim.keymap.set("n", "]g", function() require"gitsigns".nav_hunk("next") end, { desc = "Next hunk" })
+vim.keymap.set("n", "[g", function() require"gitsigns".nav_hunk("prev") end, { desc = "Prev hunk" })
 
 vim.pack.add({ {src = "https://github.com/stevearc/oil.nvim"} })
 require"oil".setup({
@@ -166,7 +170,7 @@ require"oil".setup({
     show_hidden = true,
   },
 })
-vim.keymap.set("n", "-", require("oil").open, { desc = "Open parent directory" } )
+vim.keymap.set("n", "-", require"oil".open, { desc = "Open parent directory" } )
 
 vim.pack.add({ {src = "https://github.com/nvim-treesitter/nvim-treesitter", version = "master"} })
 local parser_install_dir = vim.fn.stdpath("data") .. "/site"
