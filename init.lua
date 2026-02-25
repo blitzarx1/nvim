@@ -160,6 +160,13 @@ require"gitsigns".setup({
 vim.keymap.set("n", "]g", function() require"gitsigns".nav_hunk("next") end, { desc = "Next hunk" })
 vim.keymap.set("n", "[g", function() require"gitsigns".nav_hunk("prev") end, { desc = "Prev hunk" })
 
+vim.pack.add({
+  { src = "https://github.com/nvim-lua/plenary.nvim" },
+  { src = "https://github.com/NeogitOrg/neogit" },
+})
+require"neogit".setup()
+vim.keymap.set("n", "<leader>gg", "<cmd>Neogit<CR>", { desc = "Open Neogit" })
+
 vim.pack.add({ {src = "https://github.com/stevearc/oil.nvim"} })
 require"oil".setup({
   columns = { "icon" },
