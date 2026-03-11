@@ -98,6 +98,21 @@ vim.api.nvim_create_autocmd({ "FileType", "WinEnter" }, {
   end,
 })
 
+local hurl_group = vim.api.nvim_create_augroup("HurlLocalOpts", { clear = true })
+vim.api.nvim_create_autocmd({ "FileType", "WinEnter" }, {
+  group = hurl_group,
+  callback = function(args)
+    local ft = vim.bo[args.buf].filetype
+    if ft ~= "hurl" then
+      return
+    end
+    local bo = vim.bo[args.buf]
+    bo.expandtab = true
+    bo.shiftwidth = 2
+    bo.softtabstop = 2
+  end,
+})
+
 -- ######## REMAPS   ########
 
 vim.g.mapleader = " "
@@ -123,8 +138,22 @@ end, { desc = "Search inside selection" })
 
 -- ######## COMMANDS ########
 
-vim.api.nvim_create_user_command( "BufOnly", function () vim.cmd("silent! %bd | e# | bd#") end, {})
-vim.keymap.set("n", "<leader>o", ":BufOnly<CR>", { desc = "Close other buffers" })
+vim.api.nvim_create_user_command(
+  "BufOnly",
+  function () vim.cmd("silent! %bd | e# | bd#") end,
+  {}
+)
+vim.keymap.set("n", "<leader>bo", ":BufOnly<CR>", { desc = "Close other buffers" })
+
+vim.api.nvim_create_user_command(
+  "BufCloseAll",
+  function ()
+    vim.cmd("silent! BufOnly")
+    vim.cmd("silent! enew | bd#")
+  end,
+  {}
+)
+vim.keymap.set("n", "<leader>bc", ":BufCloseAll<CR>", { desc = "Closes all opened buffers" })
 
 -- ######## PLUGINS  ########
 
@@ -151,7 +180,6 @@ vim.api.nvim_create_autocmd("ColorScheme", {
 vim.keymap.set("n", "<leader>b", ":Pick buffers<CR>", { desc = "Opened buffers" })
 vim.keymap.set("n", "<leader>f", ":Pick files<CR>", { desc = "Find file" })
 vim.keymap.set("n", "<leader>'", ":Pick resume<CR>", { desc = "Open last picker" })
-vim.keymap.set("n", "<leader>/", ":Pick grep_live<CR>", { desc = "Open live grep" })
 
 vim.pack.add({ {src = "https://github.com/lewis6991/gitsigns.nvim"} })
 require"gitsigns".setup({
