@@ -173,7 +173,7 @@ vim.pack.add({ {src = "https://github.com/junegunn/vim-easy-align"} })
 vim.keymap.set("x", "ga", "<Plug>(EasyAlign)", { desc = "Align selection" })
 
 vim.pack.add({{src = "https://github.com/nvim-mini/mini.icons"}})
-require"mini.icons".setup()
+require"mini.icons".setup({style = "ascii"})
 
 vim.pack.add({ {src = "https://github.com/nvim-mini/mini.pick"} })
 require"mini.pick".setup()
