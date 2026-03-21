@@ -1,5 +1,5 @@
--- ######## COLORS   ########
-
+-- Colors
+-- ----------------------------------------------------------------------------
 vim.pack.add({
     {src = "https://github.com/silentium-theme/silentium.nvim"}
 })
@@ -7,9 +7,10 @@ require"silentium".setup({ accent = require"silentium".accents.peach })
 vim.cmd("colorscheme silentium")
 vim.api.nvim_set_hl(0, "Visual", { bg = "#B3D7FF", fg = require"silentium".colors.dark })
 vim.api.nvim_set_hl(0, "VisualNOS", { bg = "#B3D7FF", fg = require"silentium".colors.dark })
+-- ----------------------------------------------------------------------------
 
--- ######## OPTIONS  ########
-
+-- Opts
+-- ----------------------------------------------------------------------------
 vim.o.syntax = "off"
 
 vim.o.number = true
@@ -26,10 +27,12 @@ vim.o.listchars = "tab:▸ ,space:·,trail:·,extends:›,precedes:‹,eol:$"
 vim.o.ignorecase = true
 vim.o.smartcase = true
 
-vim.opt.grepprg = "rg --vimgrep --smart-case --hidden --glob '!.git/'"
+vim.opt.grepprg = "grep"
 vim.opt.grepformat = "%f:%l:%c:%m"
+-- ----------------------------------------------------------------------------
 
--- ######## LANGS    ########
+-- Langs
+-- ----------------------------------------------------------------------------
 
 local json_group = vim.api.nvim_create_augroup("JsonLocalOpts", { clear = true })
 vim.api.nvim_create_autocmd({ "FileType", "WinEnter" }, {
@@ -112,15 +115,17 @@ vim.api.nvim_create_autocmd({ "FileType", "WinEnter" }, {
     bo.softtabstop = 2
   end,
 })
+-- ----------------------------------------------------------------------------
 
--- ######## REMAPS   ########
+-- Remaps
+-- ----------------------------------------------------------------------------
 
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 
 -- jump paragraphs
-vim.keymap.set({ "n", "x", "o" }, "<A-j>", "}")
-vim.keymap.set({ "n", "x", "o" }, "<A-k>", "{")
+vim.keymap.set({ "n", "x", "o" }, "<A-d>", "}")
+vim.keymap.set({ "n", "x", "o" }, "<A-u>", "{")
 
 -- splits
 vim.keymap.set("n", "<C-h>", "<cmd>wincmd h<CR>")
@@ -135,8 +140,10 @@ vim.keymap.set("x", "/",function()
   vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Esc>", true, false, true), "n", false)
   vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("/\\%V", true, false, true), "n", false)
 end, { desc = "Search inside selection" })
+-- ----------------------------------------------------------------------------
 
--- ######## COMMANDS ########
+-- Commands
+-- ----------------------------------------------------------------------------
 
 vim.api.nvim_create_user_command(
   "BufOnly",
@@ -155,7 +162,10 @@ vim.api.nvim_create_user_command(
 )
 vim.keymap.set("n", "<leader>bc", ":BufCloseAll<CR>", { desc = "Closes all opened buffers" })
 
--- ######## PLUGINS  ########
+-- ----------------------------------------------------------------------------
+
+-- Plugins
+-- ----------------------------------------------------------------------------
 
 vim.pack.add({ {src = "https://github.com/github/copilot.vim"} })
 
@@ -188,15 +198,11 @@ require"gitsigns".setup({
 vim.keymap.set("n", "]g", function() require"gitsigns".nav_hunk("next") end, { desc = "Next hunk" })
 vim.keymap.set("n", "[g", function() require"gitsigns".nav_hunk("prev") end, { desc = "Prev hunk" })
 
-vim.pack.add({
-  { src = "https://github.com/nvim-lua/plenary.nvim" },
-  { src = "https://github.com/NeogitOrg/neogit" },
-})
-require"neogit".setup()
-vim.keymap.set("n", "<leader>gg", "<cmd>Neogit<CR>", { desc = "Open Neogit" })
+vim.pack.add( { { src = "https://github.com/mg979/vim-visual-multi" } } )
 
 vim.pack.add({ {src = "https://github.com/stevearc/oil.nvim"} })
 require"oil".setup({
+  watch_for_changes = true,
   columns = { "icon" },
   keymaps = {
     ["-"] = "actions.parent",
@@ -204,6 +210,7 @@ require"oil".setup({
     ["<C-j>"] = false,
     ["<C-k>"] = false,
     ["<C-l>"] = false,
+    ["<C-r>"] = "actions.refresh",
   },
   view_options = {
     show_hidden = true,
@@ -319,3 +326,4 @@ cmp.setup({
     end
   },
 })
+-- ----------------------------------------------------------------------------
