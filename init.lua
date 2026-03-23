@@ -27,8 +27,8 @@ vim.o.listchars = "tab:▸ ,space:·,trail:·,extends:›,precedes:‹,eol:$"
 vim.o.ignorecase = true
 vim.o.smartcase = true
 
-vim.opt.grepprg = "grep"
-vim.opt.grepformat = "%f:%l:%c:%m"
+vim.opt.grepprg = "grep -H"
+vim.opt.grepformat = "%f:%l:%m"
 -- ----------------------------------------------------------------------------
 
 -- Langs
