@@ -27,13 +27,12 @@ vim.o.listchars = "tab:▸ ,space:·,trail:·,extends:›,precedes:‹,eol:$"
 vim.o.ignorecase = true
 vim.o.smartcase = true
 
-vim.opt.grepprg = "grep -H"
-vim.opt.grepformat = "%f:%l:%m"
+vim.opt.grepprg = "rg -n --column"
+vim.opt.grepformat = "%f:%l:%c:%m"
 -- ----------------------------------------------------------------------------
 
 -- Langs
 -- ----------------------------------------------------------------------------
-
 local json_group = vim.api.nvim_create_augroup("JsonLocalOpts", { clear = true })
 vim.api.nvim_create_autocmd({ "FileType", "WinEnter" }, {
   group = json_group,
