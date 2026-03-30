@@ -149,7 +149,7 @@ vim.api.nvim_create_user_command(
   function () vim.cmd("silent! %bd | e# | bd#") end,
   {}
 )
-vim.keymap.set("n", "<leader>bo", ":BufOnly<CR>", { desc = "Close other buffers" })
+vim.keymap.set("n", "<leader>xo", ":BufOnly<CR>", { desc = "Close other buffers" })
 
 vim.api.nvim_create_user_command(
   "BufCloseAll",
@@ -159,7 +159,7 @@ vim.api.nvim_create_user_command(
   end,
   {}
 )
-vim.keymap.set("n", "<leader>bc", ":BufCloseAll<CR>", { desc = "Closes all opened buffers" })
+vim.keymap.set("n", "<leader>xa", ":BufCloseAll<CR>", { desc = "Closes all opened buffers" })
 
 -- ----------------------------------------------------------------------------
 
