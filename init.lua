@@ -21,7 +21,8 @@ vim.o.shiftwidth = 4
 vim.o.softtabstop = 4
 vim.o.expandtab = true
 
-vim.o.list = true
+-- to show / hide special characters use
+-- :set list / :set nolist correspondingly
 vim.o.listchars = "tab:▸ ,space:·,trail:·,extends:›,precedes:‹,eol:$"
 
 vim.o.ignorecase = true
