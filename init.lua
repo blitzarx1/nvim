@@ -337,12 +337,14 @@ vim.pack.add({ {src = "https://github.com/neovim/nvim-lspconfig"} })
 
 require("mason").setup()
 
+vim.lsp.enable("clangd")
+vim.lsp.config["clangd"] = {
+	capabilities = require('cmp_nvim_lsp').default_capabilities(),
+}
+
 vim.lsp.enable("gopls")
-local goCapabilities = require('cmp_nvim_lsp').default_capabilities();
 vim.lsp.config["gopls"] = {
-	capabilities = goCapabilities,
-	cmd = {"gopls"},
-	filetypes = {"go"},
+	capabilities = require('cmp_nvim_lsp').default_capabilities(),
 }
 
 local map   = vim.keymap.set
