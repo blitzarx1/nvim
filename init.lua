@@ -198,8 +198,6 @@ require"gitsigns".setup({
 vim.keymap.set("n", "]g", function() require"gitsigns".nav_hunk("next") end, { desc = "Next hunk" })
 vim.keymap.set("n", "[g", function() require"gitsigns".nav_hunk("prev") end, { desc = "Prev hunk" })
 
-vim.pack.add( { { src = "https://github.com/mg979/vim-visual-multi" } } )
-
 vim.pack.add({ {src = "https://github.com/stevearc/oil.nvim"} })
 require"oil".setup({
   watch_for_changes = true,
