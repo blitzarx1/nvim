@@ -140,6 +140,11 @@ vim.keymap.set("x", "/",function()
   vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Esc>", true, false, true), "n", false)
   vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("/\\%V", true, false, true), "n", false)
 end, { desc = "Search inside selection" })
+
+-- visual mode after indent
+vim.keymap.set("v", "<", "<gv", { desc = "Indent left and reselect" });
+vim.keymap.set("v", ">", ">gv", { desc = "Indent right and reselect" });
+
 -- ----------------------------------------------------------------------------
 
 -- Commands
@@ -279,12 +284,12 @@ vim.pack.add({
   {src = "https://github.com/hrsh7th/nvim-cmp"},
   {src = "https://github.com/hrsh7th/cmp-buffer"},
   {src = "https://github.com/hrsh7th/cmp-path"},
-  {src = "https://github.com/hrsh7th/cmp-nvim-lsp"},
+  -- {src = "https://github.com/hrsh7th/cmp-nvim-lsp"},
 })
 local cmp = require"cmp"
 cmp.setup({
   sources = {
-    { name = "nvim_lsp" },
+    -- { name = "nvim_lsp" },
     { name = "buffer" },
     { name = "path"},
   },
@@ -319,7 +324,7 @@ cmp.setup({
   formatting = {
     format = function(entry, vim_item)
       vim_item.menu = ({
-        nvim_lsp = "[LSP]",
+        -- nvim_lsp = "[LSP]",
         buffer   = "[Buffer]",
         path     = "[Path]",
       })[entry.source.name]
@@ -331,35 +336,35 @@ cmp.setup({
 
 -- LSP
 -- ----------------------------------------------------------------------------
-vim.pack.add({ {src = "https://github.com/mason-org/mason.nvim"} })
-vim.pack.add({ {src = "https://github.com/neovim/nvim-lspconfig"} })
-
-require("mason").setup()
-
-vim.lsp.enable("clangd")
-vim.lsp.config["clangd"] = {
-	capabilities = require('cmp_nvim_lsp').default_capabilities(),
-}
-
-vim.lsp.enable("gopls")
-vim.lsp.config["gopls"] = {
-	capabilities = require('cmp_nvim_lsp').default_capabilities(),
-}
-
-local map   = vim.keymap.set
-local opts  = { noremap = true, silent = true }
-
--- lsp: start
-map('n', 'gr', vim.lsp.buf.references, opts)
-map('n', 'gd', vim.lsp.buf.definition, opts)
-map('n', 'gi', vim.lsp.buf.implementation, opts)
-map('n', 'gy', vim.lsp.buf.type_definition, opts)
-map('n', '<leader>r', vim.lsp.buf.rename, opts)
-map('n', '<leader>k', vim.lsp.buf.hover, opts)
-map('n', '<leader>a', vim.lsp.buf.code_action, opts)
-map('n', '<leader>d', vim.diagnostic.open_float, opts)
-map('n', '<leader>D', function() vim.diagnostic.setqflist({ open = true }) end, opts)
-map('i', '<C-k>', vim.lsp.buf.signature_help, opts)
-
-vim.diagnostic.enable(false)
+-- vim.pack.add({ {src = "https://github.com/mason-org/mason.nvim"} })
+-- vim.pack.add({ {src = "https://github.com/neovim/nvim-lspconfig"} })
+-- 
+-- require("mason").setup()
+-- 
+-- vim.lsp.enable("clangd")
+-- vim.lsp.config["clangd"] = {
+-- 	capabilities = require('cmp_nvim_lsp').default_capabilities(),
+-- }
+-- 
+-- vim.lsp.enable("gopls")
+-- vim.lsp.config["gopls"] = {
+-- 	capabilities = require('cmp_nvim_lsp').default_capabilities(),
+-- }
+-- 
+-- local map   = vim.keymap.set
+-- local opts  = { noremap = true, silent = true }
+-- 
+-- -- lsp: start
+-- map('n', 'gr', vim.lsp.buf.references, opts)
+-- map('n', 'gd', vim.lsp.buf.definition, opts)
+-- map('n', 'gi', vim.lsp.buf.implementation, opts)
+-- map('n', 'gy', vim.lsp.buf.type_definition, opts)
+-- map('n', '<leader>r', vim.lsp.buf.rename, opts)
+-- map('n', '<leader>k', vim.lsp.buf.hover, opts)
+-- map('n', '<leader>a', vim.lsp.buf.code_action, opts)
+-- map('n', '<leader>d', vim.diagnostic.open_float, opts)
+-- map('n', '<leader>D', function() vim.diagnostic.setqflist({ open = true }) end, opts)
+-- map('i', '<C-k>', vim.lsp.buf.signature_help, opts)
+-- 
+-- vim.diagnostic.enable(false)
 -- ----------------------------------------------------------------------------
