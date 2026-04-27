@@ -28,8 +28,10 @@ vim.o.listchars = "tab:▸ ,space:·,trail:·,extends:›,precedes:‹,eol:$"
 vim.o.ignorecase = true
 vim.o.smartcase = true
 
-vim.opt.grepprg = "rg -n --column"
-vim.opt.grepformat = "%f:%l:%c:%m"
+vim.o.grepprg = "rg -uuu -n --column"
+vim.o.grepformat = "%f:%l:%c:%m"
+
+vim.g.netrw_banner = 0
 -- ----------------------------------------------------------------------------
 
 -- Langs
@@ -124,8 +126,8 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 
 -- jump paragraphs
-vim.keymap.set({ "n", "x", "o" }, "<A-d>", "}")
-vim.keymap.set({ "n", "x", "o" }, "<A-u>", "{")
+vim.keymap.set({ "n", "x", "o" }, "<A-j>", "}")
+vim.keymap.set({ "n", "x", "o" }, "<A-k>", "{")
 
 -- splits
 vim.keymap.set("n", "<C-h>", "<cmd>wincmd h<CR>")
@@ -136,7 +138,7 @@ vim.keymap.set("n", "<C-l>", "<cmd>wincmd l<CR>")
 -- remove highlight on esc
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 
-vim.keymap.set("x", "/",function()
+vim.keymap.set("x", "/", function()
   vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Esc>", true, false, true), "n", false)
   vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("/\\%V", true, false, true), "n", false)
 end, { desc = "Search inside selection" })
@@ -145,11 +147,13 @@ end, { desc = "Search inside selection" })
 vim.keymap.set("v", "<", "<gv", { desc = "Indent left and reselect" });
 vim.keymap.set("v", ">", ">gv", { desc = "Indent right and reselect" });
 
+-- Ex (netrw)
+-- vim.keymap.set("n", "-", ":Ex<CR>", { silent = true, desc = "Open explorer" })
+
 -- ----------------------------------------------------------------------------
 
 -- Commands
 -- ----------------------------------------------------------------------------
-
 vim.api.nvim_create_user_command(
   "BufOnly",
   function () vim.cmd("silent! %bd | e# | bd#") end,
@@ -166,7 +170,6 @@ vim.api.nvim_create_user_command(
   {}
 )
 vim.keymap.set("n", "<leader>xa", ":BufCloseAll<CR>", { desc = "Closes all opened buffers" })
-
 -- ----------------------------------------------------------------------------
 
 -- Plugins
@@ -177,10 +180,11 @@ vim.pack.add({ {src = "https://github.com/github/copilot.vim"} })
 vim.pack.add({ {src = "https://github.com/junegunn/vim-easy-align"} })
 vim.keymap.set("x", "ga", "<Plug>(EasyAlign)", { desc = "Align selection" })
 
-vim.pack.add({{src = "https://github.com/nvim-mini/mini.icons"}})
+vim.pack.add({ 
+  {src = "https://github.com/nvim-mini/mini.icons"},
+  {src = "https://github.com/nvim-mini/mini.pick"}
+})
 require"mini.icons".setup({style = "ascii"})
-
-vim.pack.add({ {src = "https://github.com/nvim-mini/mini.pick"} })
 require"mini.pick".setup()
 local silentium_colors = require"silentium".colors
 local apply_minipick_highlights = function()
@@ -205,6 +209,7 @@ vim.keymap.set("n", "[g", function() require"gitsigns".nav_hunk("prev") end, { d
 
 vim.pack.add({ {src = "https://github.com/stevearc/oil.nvim"} })
 require"oil".setup({
+  skip_confirm_for_simple_edits=true,
   watch_for_changes = true,
   columns = { "icon" },
   keymaps = {
